@@ -1,0 +1,45 @@
+## Introduction
+
+This project is an AI-enhanced learning platform inspired by algorithmic programming, aimed at providing users with a powerful environment to practice coding and algorithms.
+Using OpenAI, we provide intelligent tutoring and support services to help users learn effectively.
+
+## Key Features
+
+- A wide range of programming and algorithm challenges.
+- Real-time feedback and hints powered by OpenAI.
+- Detailed explanations and solutions.
+- User-friendly interface.
+- Performance tracking and analytics.
+
+##Register
+test/OpenAI/Constant.py : API_KEY="OPEN_API_KEY" # Create an API key to access the OpenAI API. https://platform.openai.com/api-keys
+test/static/ide-master/js/ide.js: const API_KEY = "API_KEY_JUDGE0"; // Get yours for free at https://rapidapi.com/judge0-official/api/judge0-ce/pricing
+
+
+## Installation
+
+To get started with the project, follow these steps:
+
+1. Navigate to the project directory:
+    ```bash
+    cd test
+    ```
+2. Install the required libraries:
+
+    ```bash
+    pip install langchain-openai langchain-core mysql-connector-python flask
+    ```
+
+### Required Libraries
+
+Ensure the following libraries are installed in your environment:
+
+```python
+from langchain_openai import ChatOpenAI
+from langchain_core.prompts import PromptTemplate
+from langchain_core.pydantic_v1 import BaseModel, Field
+from langchain_core.output_parsers import JsonOutputParser
+import mysql.connector
+from flask import Flask, render_template, request, jsonify```
+
+
