@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coding- Tasks</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+    }
+    .header {
+      background-color: #333;
+      color: #fff;
+      padding: 10px 20px;
+    }
+    .header .logo img {
+      height: 30px;
+      vertical-align: middle;
+    }
+    .menu-toggle {
+      color: #fff;
+      cursor: pointer;
+    }
+    .controls .account {
+      color: #fff;
+      text-decoration: none;
+    }
+    .controls .account:hover {
+      text-decoration: underline;
+    }
+    .navigation {
+      display: flex;
+      margin-top: 20px;
+    }
+    .sidebar {
+      width: 250px;
+      background-color: #f8f9fa;
+      padding: 20px;
+    }
+    .content {
+      flex: 1;
+      padding: 20px;
+      background-color: #fff;
+    }
+    .task-list {
+      list-style: none;
+      padding: 0;
+    }
+    .task-list li {
+      margin-bottom: 10px;
+    }
+    .task-list li a {
+      color: #333;
+      text-decoration: none;
+    }
+    .task-list li a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-3">
+                <a class="logo">Coding</a>
+            </div>
+            <div class="col-md-3">
+              <a href="/about" >About</a>
+            </div>
+            <div class="col-md-3">
+              <a href="/questions" >Interview Questions</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+  <div class="skeleton">
+    <div class="container-fluid">
+      <div class="row justify-content-center"><!-- Thêm lớp justify-content-center để căn giữa nội dung -->
+        <div class="col-md-9 content-wrapper">
+          <div class="content">
+            <h2>Introductory Problems</h2>
+            <ul class="task-list">
+             
+              {% for problem in problems %}
+              <li class="task">
+                  <a href="{{ url_for('problem_detail',id=problem.id) }}">{{ problem.name }}</a>
+                  <!-- <span class="detail">{{ problem.accepted }} / {{ problem.submissions }}</span> -->
+                  <span class="task-score icon"></span>
+              </li>
+              {% endfor %}
+            </ul>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

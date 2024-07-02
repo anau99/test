@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Page</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .chat-container {
+            max-height: 500px;
+            overflow-y: auto;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            padding: 15px;
+        }
+        .chat-message {
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: hidden;
+        }
+        .user {
+            background-color: #e1ffc7;
+            text-align: right;
+            overflow-x: hidden; 
+        }
+        .bot {
+            background-color: #f1f1f1;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="chat-container" id="chatMessages"></div>
+        <div class="chat-input">
+            <input type="text" id="chatInput" placeholder="Type your message..." class="form-control">
+            <button id="sendChat" class="btn btn-primary mt-2">Send</button>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/default.min.css">
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const sendChatBtn = document.getElementById('sendChat');
+            const chatInput = document.getElementById('chatInput');
+            const chatMessages = document.getElementById('chatMessages');
+
+            sendChatBtn.addEventListener('click', async () => {
+                const message = chatInput.value.trim();
+                if (!message) return;
+
+                appendMessage('user', message);
+                chatInput.value = '';
+
+                try {
+                    const response = await fetch('/chat', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ message })
+                    });
+
+                    if (!response.ok) {
+                        throw new Error('Failed to receive response from server');
+                    }
+
+                    const data = await response.json();
+                    console.log('Response from server:', data);  // Log response for debugging
+                    if (data.message) {
+                        appendMessage('bot', data.message);
+                    } else {
+                        throw new Error('Response does not contain message');
+                    }
+                } catch (error) {
+                    console.error('Error sending/receiving message:', error);
+                }
+            });
+
+            function appendMessage(sender, message) {
+                const messageElement = document.createElement('div');
+                messageElement.classList.add('chat-message', sender);
+                messageElement.innerHTML = `<p>${message}</p>`;
+                chatMessages.appendChild(messageElement);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }
+
+            // Highlight code blocks using highlight.js
+            document.querySelectorAll('pre code').forEach((block) => {
+                hljs.highlightBlock(block);
+            });
+            // function appendMessage(sender, message) {
+            //     const messageElement = document.createElement('div');
+            //     messageElement.classList.add('chat-message', sender);
+                
+            //     if (sender === 'user') {
+            //         messageElement.classList.add('user');
+            //     }
+
+            //     messageElement.innerHTML = `<pre><code>${message}</code></pre>`;
+            //     chatMessages.appendChild(messageElement);
+            //     chatMessages.scrollTop = chatMessages.scrollHeight;
+
+            //     // Highlight code blocks using highlight.js
+            //     document.querySelectorAll('pre code').forEach((block) => {
+            //         hljs.highlightBlock(block);
+            //     });
+            // }
+        });
+    </script>
+</body>
+</html>

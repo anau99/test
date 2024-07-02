@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Questions</title>
+    <style>
+        /* Your custom CSS styles can go here */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h3 {
+            color: #007bff;
+        }
+        ol {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin-bottom: 20px;
+        }
+        .form-check {
+            margin-top: 10px;
+        }
+        button {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Data Structures and Algorithms Quiz</h2>
+        <p>Please select the correct answer for each question:</p>
+        <form id="quizForm">
+            <ol>
+                {% for question in questions %}
+                <li>
+                    <h3>{{ question.content }}</h3>
+                    <input type="hidden" name="question_id_{{ loop.index }}" value="{{ loop.index }}">
+                    <input type="hidden" name="correct_answer_{{ loop.index }}" value="{{ question.correctAnswer }}">
+                    {% for option in question.options %}
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" name="{{ question.content }}" value="{{ option }}">
+                        <label class="form-check-label">{{ option }}</label>
+                    </div>
+                    {% endfor %}
+                </li>
+                {% endfor %}
+            </ol>
+            <br>
+            <button type="button" id="submitBtn" class="btn btn-primary">Submit Answers</button>
+        </form>
+    </div>
+
+    <!-- Optional: jQuery and Bootstrap JS dependencies -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('#submitBtn').click(function() {
+                // Prepare object to store answers
+                var cntCorrect = 0;
+                var cntQuestion =0;
+                // Loop through each question in the form
+                $('form#quizForm ol li').each(function(index) {
+                    // Retrieve question ID
+                    var question_id = $(this).find('input[name^="question_id"]').val();
+
+                    // Retrieve selected answer for the question
+                    var selected_answer = $(this).find('input[type="radio"]:checked').val();
+                    var correct = $(this).find('input[name^="correct_answer"]').val();
+                    cntQuestion++;
+                    //console.log(correct);
+                    if(selected_answer===correct){
+                        cntCorrect++;   
+                    }
+                
+                });
+
+               // Display the result message
+                var resultMessage = "Your correct answers out of total questions are " + cntCorrect + "/" + cntQuestion;
+                alert(resultMessage);      
+                return false;
+            });
+        });
+    </script>
+</body>
+</html>

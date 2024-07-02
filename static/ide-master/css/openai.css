@@ -1,0 +1,142 @@
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+/* Modal content */
+.modal-content {
+    background-color: #fefefe;
+    margin: 2% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 800px; /* Adjust the maximum width as needed */
+    height: 80%;
+    max-height: 80%;
+    overflow-y: auto; /* Enable vertical scroll if content is too long */
+}
+
+/* Close button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/*Style for Chat Modal*/
+#chatModal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4); /* Semi-transparent black background */
+}
+
+/* Style for Modal Content */
+.modal-content {
+    background-color: #fefefe;
+    margin: 10% auto; /* 10% from the top, centered horizontally */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Set width to 80% of viewport */
+    max-width: 800px; /* Maximum width */
+    position: relative;
+    border-radius: 8px;
+}
+
+/* Style for Close Button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/*Style for Chat Messages*/
+.chat-messages {
+    height: 400px; /* Độ cao của vùng chat messages */
+    overflow-y: scroll;
+    padding: 10px; /* Khoảng cách bên trong vùng chat messages */
+    font-size: 16px; /* Độ lớn của font chữ */
+}
+
+/* Style for Human Messages */
+.chat-message.user {
+    background-color: #e5f1ff;
+    color: #333;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    clear: both;
+    width: auto;
+    float: left;
+    white-space: pre-wrap; /* Đảm bảo nội dung được xuống dòng tự động */
+    word-wrap: break-word; /* Đảm bảo các từ không bị tràn ra ngoài */
+    /* max-width: 80%;  */
+
+}
+
+/* Style for Bot Messages */
+.chat-message.bot {
+    background-color: #f0fff0; /* Light green background for bot messages */
+    color: #333; /* Dark text color */
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    clear: both;
+    width: 60%; /* Width of the message box */
+    float: right;
+    overflow-x: hidden;
+}
+
+/* Clearfix for Message Alignment */
+.chat-message:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* Other styles can be added as needed */
+#chatInput {
+    font-size: 16px; /* Độ lớn của font chữ */
+    padding: 12px; /* Khoảng cách giữa nội dung và viền của input */
+    width: calc(100% - 84px); /* Độ rộng của input, tính toán để phù hợp với layout */
+    margin-bottom: 10px; /* Khoảng cách với các phần tử dưới */
+    border: 1px solid #ccc; /* Viền của input */
+    border-radius: 4px; /* Độ cong của viền */
+    box-sizing: border-box; /* Đảm bảo độ rộng và chiều cao tính cả padding và border */
+}
+
+
+
+
+
+
+
